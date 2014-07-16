@@ -1,0 +1,33 @@
+This directory contains files which demonstrate use
+of UNIX system calls for message passing. These can be used
+for communication between sender (client) and receiver (server)
+programs. 
+
+To keep files small, a trivial communication is implemented
+here; i.e., the two parties trade only one
+integer (data), which can be treated as a request, if sent by
+the sender and as a reply if sent by the receiver(server).
+
+mymsg.h - gives definitions (protocols) to be used by the two
+	parties.   These are in the form of two typedef.
+
+client.c - Client opens a message queue first that it uses
+	to receive replies from the server; then it obtains
+	message queue-id of the queue which the server has
+	already opened to receive request messages. The client
+	sends only one request and receives one replyi in this
+	program.
+
+Server.c - Very similar to the client program. Read client.c first.
+
+Makefile - A simple makefile example
+
+To test these program, compile them first, and next run the
+server in background and then run the client. Alternately, 
+use the given Makefile. Try "make all" to build execuatble, and
+"make clean" to remove intermediate file.
+
+Related system utility programs are "ipcs -q" to check status of
+message queues on the system, and "ipcrm -q qid" to remove
+queues opened before. It is always a good idea to remove queues
+manually, before re-executing client server programs.
